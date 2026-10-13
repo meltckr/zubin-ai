@@ -1,0 +1,21 @@
+# Agent Desk
+
+> Plain-English guides to using and deploying AI agents (Grok Bot, Claude Code, Codex, Antigravity and more).
+
+## Pages
+- [Set up your first agent in one afternoon](https://meltckr.github.io/agent-desk/guides/first-agent/): Pick one tool, one job, and one folder. Get a real result before you get clever.
+- [Write instructions an agent actually follows](https://meltckr.github.io/agent-desk/guides/write-a-brief/): Short, specific, testable. How to write a brief that survives contact with real work.
+- [Routines and schedules: make an agent show up on time](https://meltckr.github.io/agent-desk/guides/routines/): Turn a one-off task into a daily or weekly routine without it going off the rails.
+- [Connectors: giving an agent access without giving it the keys](https://meltckr.github.io/agent-desk/guides/connectors/): How to hook agents up to email, calendar, Slack, Drive, and GitHub safely.
+- [Approval gates: let agents draft, keep the send button](https://meltckr.github.io/agent-desk/guides/approval-gates/): The single most important safety habit: agents prepare, humans approve anything irreversible.
+- [Multi-agent desks: when one assistant isn't enough](https://meltckr.github.io/agent-desk/guides/multi-agent-desks/): Split work into desks with clear lanes so agents stop stepping on each other.
+- [Cost control: keep agents from quietly burning money](https://meltckr.github.io/agent-desk/guides/cost-control/): Where agent costs come from and five habits that keep the bill boring.
+- [Claude Code, Codex, Antigravity: a working comparison](https://meltckr.github.io/agent-desk/guides/coding-agents/): How the main coding agents differ in practice, and how to pick for a given job.
+- [Deploy your first agent-built site for free](https://meltckr.github.io/agent-desk/guides/deploy-a-site/): From prompt to a live public URL using GitHub Pages, without touching a server.
+- [When your agent goes wrong: a calm debugging checklist](https://meltckr.github.io/agent-desk/guides/when-it-goes-wrong/): Stalled, looping, confidently wrong, or did something you didn't ask for. What to check first.
+- [Guides](https://meltckr.github.io/agent-desk/guides/): Practical how-to guides for using and deploying AI agents.
+- [Start here](https://meltckr.github.io/agent-desk/start-here/): A beginner's path to getting real work out of AI agents in your first week.
+- [Use-case library](https://meltckr.github.io/agent-desk/use-cases/): Real, everyday jobs people hand to AI agents, with where to start.
+- [Newsletter](https://meltckr.github.io/agent-desk/newsletter/): A short weekly email with one useful agent setup you can copy.
+- [Sponsor Agent Desk](https://meltckr.github.io/agent-desk/sponsor/): Reach people who are actually setting up and running AI agents.
+- [Agent Desk: plain-English guides to using AI agents](https://meltckr.github.io/agent-desk/): Learn to set up, run, and safely deploy AI agents like Grok Bot, Claude Code, Codex, and Antigravity. Practical guides, no jargon.

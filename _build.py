@@ -1,5 +1,5 @@
 import os, html
-BASE="https://meltckr.github.io/agent-desk"
+BASE="https://meltckr.github.io/zubin-ai"
 CSS="""*{box-sizing:border-box}body{margin:0;font:17px/1.65 -apple-system,Segoe UI,Inter,sans-serif;color:#1b1d21;background:#fbfaf7}
 a{color:#0b5fff}header,footer{max-width:820px;margin:auto;padding:18px 20px}header{display:flex;flex-wrap:wrap;gap:14px;align-items:center;border-bottom:1px solid #e6e3dc}
 header .brand{font-weight:800;text-decoration:none;color:#111;margin-right:auto}header nav a{margin-left:14px;text-decoration:none;color:#444;font-size:15px}
@@ -18,12 +18,12 @@ def page(path,title,desc,body):
     nav="".join(f'<a href="{root}{u}">{n}</a>' for n,u in NAV)
     url=BASE+"/"+path
     doc=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)} | Agent Desk</title><meta name="description" content="{html.escape(desc)}"><link rel="canonical" href="{url}">
+<title>{html.escape(title)} | Zubin AI</title><meta name="description" content="{html.escape(desc)}"><link rel="canonical" href="{url}">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary"><link rel="stylesheet" href="{root}style.css"></head><body>
-<header><a class="brand" href="{root}">Agent Desk</a><nav>{nav}</nav></header><main>{body}</main>
-<footer>Agent Desk: plain-English guides to using and deploying AI agents. Independent; not affiliated with any tool mentioned. <a href="{root}sponsor/">Sponsor</a> · <a href="{root}llms.txt">llms.txt</a></footer></body></html>"""
-    fp=os.path.join("site",path,"index.html"); os.makedirs(os.path.dirname(fp),exist_ok=True); open(fp,"w").write(doc); pages.append((path,title,desc))
+<header><a class="brand" href="{root}">Zubin AI</a><nav>{nav}</nav></header><main>{body}</main>
+<footer>Zubin AI: plain-English guides to using and deploying AI agents. Independent; not affiliated with any tool mentioned. <a href="{root}sponsor/">Sponsor</a> · <a href="{root}llms.txt">llms.txt</a></footer></body></html>"""
+    fp=os.path.join("site_new",path,"index.html"); os.makedirs(os.path.dirname(fp),exist_ok=True); open(fp,"w").write(doc); pages.append((path,title,desc))
 
 G=[
 ("first-agent","Set up your first agent in one afternoon","Pick one tool, one job, and one folder. Get a real result before you get clever.","""
@@ -88,6 +88,20 @@ Never: reply to anyone, delete anything, or spend money.</pre>
 <li><b>Find the missing instruction.</b> Most mistakes trace to a gap in the brief.</li><li><b>Shrink the task.</b> Split one big ask into three small ones.</li>
 <li><b>Check access.</b> "I couldn't find it" often means a connector expired.</li><li><b>Start a fresh session</b> when it starts looping. Long conversations drift.</li>
 <li><b>Tighten the gate.</b> If it did something irreversible, that action goes behind approval today.</li></ol>"""),
+("finding-agent-tools","Finding agent tools worth your time","How to scout new agent tools and apps, and how to judge them before you hand over access.","""
+<p>New agent tools launch every week. Names you'll run into include hosted assistants like Grok Bot, coding agents like Claude Code, Codex, and Antigravity, open agent projects like Hermes, and newer apps such as Muse, Dots, and Instinct. Features and pricing change fast, so treat this as a map, not a review, and <b>always check each tool's current docs</b> before you commit.</p>
+<h2>Where to find them</h2><ul><li>Official changelogs and launch posts from the companies themselves</li><li>GitHub trending and the README of open-source projects</li><li>Practitioners on X and YouTube who show real setups, not just demos</li><li>App store listings, for consumer apps (read the privacy section)</li></ul>
+<h2>Sort before you try</h2><ul><li><b>Hosted assistant:</b> lives in the cloud, connects to your apps.</li><li><b>Coding agent:</b> works in files and a terminal.</li><li><b>Open-source agent:</b> you run it yourself; more control, more setup.</li><li><b>Single-purpose app:</b> does one job well; easy to try, hard to extend.</li></ul>
+<h2>Five-question test</h2><ol><li>Does it solve a job I already do every week?</li><li>What exactly can it read, and what can it send or change?</li><li>Can I require my approval before anything irreversible?</li><li>What does it cost at real usage, not the trial?</li><li>How do I export my data and disconnect it?</li></ol>
+<div class="box">Try new tools on a low-stakes job with read-only access. Promote them only after a clean week.</div>"""),
+("new-model-releases","How to take advantage of new model releases","A simple playbook for testing a new AI model against your real work instead of the hype.","""
+<p>Every release comes with charts. Your work isn't a chart. Here's how to find out in an hour whether a new model actually helps you.</p>
+<h2>1. Keep a personal test set</h2><p>Save 5 to 10 real tasks you care about with a known good answer: a brief you wrote, a bug you fixed, an email you'd send. This is your benchmark.</p>
+<h2>2. Run old vs new side by side</h2><p>Same brief, same inputs, both models. Compare results blind if you can. Note speed and cost too.</p>
+<h2>3. Look for new abilities, not just better scores</h2><p>Longer context, better tool use, cheaper speed tiers, or a new effort setting can unlock jobs that weren't worth automating before.</p>
+<h2>4. Switch one routine at a time</h2><p>Move a single low-risk routine to the new model for a week. Keep the old one ready to switch back.</p>
+<h2>5. Re-check your briefs</h2><p>Newer models often follow instructions more literally. Lines you added to work around an old model's quirks may now cause problems. Trim them.</p>
+<div class="box">Model names, prices, and limits change constantly. Confirm details in the provider's current docs before you rely on them.</div>"""),
 ]
 for slug,t,d,b in G: page(f"guides/{slug}/",t,d,f"<p><a href='../'>&larr; All guides</a></p><h1>{t}</h1><p class='lede'>{d}</p>{b}")
 cards=lambda items,pre: '<div class="cards">'+"".join(f'<a class="card" href="{pre}{s}/"><b>{t}</b><span>{d}</span></a>' for s,t,d,_ in items)+'</div>'
@@ -98,17 +112,17 @@ page("start-here/","Start here","A beginner's path to getting real work out of A
 <h2>Three beliefs that save you time</h2><ul><li>Specific beats smart. A clear brief beats a better model.</li><li>Drafts are free; sends are forever. Keep the send button.</li><li>One job done every day beats ten jobs done once.</li></ul>""")
 U=[("Morning briefing","Calendar, important email, and today's top three priorities in one message before 7am."),("Inbox triage","Sort, label, archive the noise, and draft replies you approve."),("Meeting prep","A one-page brief on who you're meeting and what's open between you."),("Meeting follow-up","Turn a recorded call into decisions, owners, and draft follow-ups."),("Subscription sweep","Find every recurring charge so you can cancel what you forgot."),("Web page watcher","Tell me when a price, policy, or competitor page changes."),("Content repurposing","Turn one long piece into a short post, an email, and an audio version."),("Personal dashboard","A private web page that shows your projects and daily priorities."),("Code maintenance","Fix small bugs, update dependencies, and open a pull request for review."),("Research digest","A weekly roundup on one topic with sources and labeled guesses."),("Reminders that matter","Renewals, appointments, and deadlines put on your calendar with the link attached."),("Team pulse","Post a quick survey in a team channel and tally the answers for you.")]
 page("use-cases/","Use-case library","Real, everyday jobs people hand to AI agents, with where to start.","<h1>Use-case library</h1><p class='lede'>Jobs that work well today. Each one starts read-only and keeps sends behind your approval.</p><div class='cards'>"+"".join(f"<div class='card'><b>{a}</b><span>{b}</span></div>" for a,b in U)+"</div><p>Not sure how to start one? <a href='../guides/first-agent/'>Set up your first agent.</a></p>")
-page("newsletter/","Newsletter","A short weekly email with one useful agent setup you can copy.","""<h1>The Agent Desk newsletter</h1><p class="lede">One practical agent setup a week. Five minutes to read, copy-paste ready.</p>
+page("newsletter/","Newsletter","A short weekly email with one useful agent setup you can copy.","""<h1>The Zubin AI newsletter</h1><p class="lede">One practical agent setup a week. Five minutes to read, copy-paste ready.</p>
 <form onsubmit="event.preventDefault();this.querySelector('p').hidden=false"><input type="email" placeholder="you@example.com" required aria-label="Email"> <button type="submit">Join the list</button>
 <p hidden><b>Thanks!</b> Signups open soon. Nothing was sent or saved yet.</p></form><p style="color:#777;font-size:14px">Coming soon. This form doesn't collect or store emails yet.</p>""")
-page("sponsor/","Sponsor Agent Desk","Reach people who are actually setting up and running AI agents.","""<h1>Sponsor Agent Desk</h1><p class="lede">Our readers are builders and operators putting agents to work. Sponsorships are opening soon.</p>
+page("sponsor/","Sponsor Zubin AI","Reach people who are actually setting up and running AI agents.","""<h1>Sponsor Zubin AI</h1><p class="lede">Our readers are builders and operators putting agents to work. Sponsorships are opening soon.</p>
 <ul><li>One sponsor per newsletter issue, clearly labeled</li><li>We only accept tools we'd recommend to a friend</li><li>Sponsors never edit guide content</li></ul><p>Sponsorship details and booking are coming soon.</p>""")
-page("","Agent Desk: plain-English guides to using AI agents","Learn to set up, run, and safely deploy AI agents like Grok Bot, Claude Code, Codex, and Antigravity. Practical guides, no jargon.",
+page("","Zubin AI: plain-English guides to using AI agents","Learn to set up, run, and safely deploy AI agents like Grok Bot, Claude Code, Codex, Antigravity, and more. Practical guides, no jargon.",
 """<h1>Put AI agents to work. Keep your hand on the wheel.</h1><p class="lede">Plain-English guides to setting up, scheduling, connecting, and safely running AI agents, from people who run them every day.</p>
 <p><a class="card" style="display:inline-block" href="start-here/"><b>New here? Start here &rarr;</b><span>Your first useful agent in a week.</span></a></p>
 <h2>Popular guides</h2>"""+cards(G[:6],"guides/")+"""<p><a href="guides/">See all guides &rarr;</a> · <a href="use-cases/">Browse use cases &rarr;</a></p>""")
-open("site/style.css","w").write(CSS); open("site/.nojekyll","w").write("")
-open("site/robots.txt","w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-open("site/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"<url><loc>{BASE}/{p}</loc><lastmod>2026-10-13</lastmod></url>\n" for p,_,_ in pages)+"</urlset>\n")
-open("site/llms.txt","w").write("# Agent Desk\n\n> Plain-English guides to using and deploying AI agents (Grok Bot, Claude Code, Codex, Antigravity and more).\n\n## Pages\n"+"".join(f"- [{t}]({BASE}/{p}): {d}\n" for p,t,d in pages))
-open("site/404.html","w").write('<!doctype html><meta charset="utf-8"><title>Not found | Agent Desk</title><p>Page not found. <a href="/agent-desk/">Go home</a>.</p>')
+open("site_new/style.css","w").write(CSS); open("site_new/.nojekyll","w").write("")
+open("site_new/robots.txt","w").write(f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
+open("site_new/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f"<url><loc>{BASE}/{p}</loc><lastmod>2026-10-13</lastmod></url>\n" for p,_,_ in pages)+"</urlset>\n")
+open("site_new/llms.txt","w").write("# Zubin AI\n\n> Plain-English guides to using and deploying AI agents (Grok Bot, Claude Code, Codex, Antigravity and more).\n\n## Pages\n"+"".join(f"- [{t}]({BASE}/{p}): {d}\n" for p,t,d in pages))
+open("site_new/404.html","w").write('<!doctype html><meta charset="utf-8"><title>Not found | Zubin AI</title><p>Page not found. <a href="/zubin-ai/">Go home</a>.</p>')
